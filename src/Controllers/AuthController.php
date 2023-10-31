@@ -23,17 +23,4 @@ class AuthController extends PublicController
 
         $this->render('auth/login', ['title' => 'Login to Tooth Care!', "alert" => $alert]);
     }
-
-    public function register()
-    {
-        $login_form = Form::get_instance();
-
-        $alert = $login_form->handle_register();
-
-        if (isset($_SESSION["loggedInUserId"])) {
-            $this->redirect();
-        }
-
-        $this->render('auth/register', ['title' => 'Get started with Tooth Care!', "alert" => $alert]);
-    }
 }

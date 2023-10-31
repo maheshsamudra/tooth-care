@@ -50,42 +50,6 @@ class Form extends Database
     }
 
 
-    public function handle_register()
-    {
-        if (!$this->valid_method) {
-            return;
-        }
-
-        $alert = new Alert();
-
-        if (!$this->register_fields_are_filled()) {
-            $alert->add_danger_message("All the fields are required.");
-            return $alert;
-        }
-
-        if (!$this->register_passwords_match()) {
-            $alert->add_danger_message("Passwords should match.");
-        }
-        if (!$this->is_valid_email()) {
-            $alert->add_danger_message("Please add a valid email address.");
-        }
-
-        $user = User::validate_user_registration();
-
-        if ($user) {
-            $alert->add_danger_message("The email is already registered.");
-        } else {
-            User::register();
-            $user = User::validate_user_login();
-            if ($user) {
-                User::get_instance($user);
-            } else {
-                $alert->add_danger_message("Failed to register. Please retry.");
-            }
-        }
-
-        return $alert;
-    }
 
     private function register_fields_are_filled()
     {

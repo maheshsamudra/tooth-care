@@ -11,7 +11,7 @@
                 <input type="password" name="password" class="uk-input" placeholder="******" required min="6" value="mahesh123">
             </div>
             <div class="uk-margin uk-flex uk-flex-between uk-flex-middle">
-                <a href="/register">Create an account &rarr;</a>
+                <small><u class="uk-text-muted uk-padding-small-top uk-padding-small-bottom uk-padding-small-right" uk-tooltip="Public registration prohibited. Please contact us to get started.">Don't have an account?</u></small>
                 <button class=" uk-button uk-button-primary">Login</button>
             </div>
         </form>
