@@ -27,17 +27,23 @@
 
                     </div>
 
-                    <div class="uk-navbar-right">
+                    <?php if (isset($user)) : ?>
 
-                        <ul class="uk-navbar-nav">
-                            <?php if (isset($_SESSION["loggedInUserId"])) : ?>
-                                <li><a href="/logout" class="uk-flex uk-flex-center">Sign Out <span uk-icon="sign-out"></span>
+                        <div class="uk-navbar-right">
+
+                            <div class="uk-navbar-item">
+                                <div>Welcome <?php echo $user->first_name; ?>!</div>
+                            </div>
+
+                            <ul class="uk-navbar-nav">
+
+                                <li><a href="/logout" class="uk-flex uk-flex-center"><span uk-icon="sign-out"></span>
                                     </a></li>
-                            <?php endif; ?>
 
-                        </ul>
-                    </div>
 
+                            </ul>
+                        </div>
+                    <?php endif; ?>
                 </div>
 
             </div>

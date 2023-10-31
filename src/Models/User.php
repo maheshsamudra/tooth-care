@@ -13,7 +13,6 @@ class User extends Database
     public $first_name;
     public $last_name;
     public $email;
-    private $password;
 
     private function __construct($user)
     {
@@ -21,26 +20,44 @@ class User extends Database
         $this->first_name = $user->first_name;
         $this->last_name = $user->last_name;
         $this->email = $user->email;
-        $this->password = $user->password;
     }
 
-    public static function getInstance($user =  null)
+    public static function getInstance()
     {
-        if (self::$instance != null) {
-            return self::$instance;
-        } else if (!$user || !$user->email || !$user->first_name || !$user->last_name) {
-            if (isset($_SESSION["loggedInUserId"])) {
-                $user = Database::getLoggedInUser();
-                var_dump($user);
-            } else {
-                throw new Error("Missing user data.");
-            }
-        } else {
+        if (self::$instance == null && isset($_SESSION["loggedInUserId"])) {
+            $user = self::getLoggedInUser();
             self::$instance = new User($user);
-            $_SESSION['loggedInUserId'] = $user->id;
         }
 
         return self::$instance;
+    }
+
+    public static function getLoggedInUser()
+    {
+        if (isset($_SESSION["loggedInUserId"])) {
+            $db = self::getConnection();
+
+            $stmt = $db->connection->prepare("SELECT * FROM users WHERE id=?");
+            $stmt->execute([$_SESSION["loggedInUserId"]]);
+            return $stmt->fetchObject();
+        } else {
+            return null;
+        }
+    }
+
+    public static function getUserByEmail($email)
+    {
+        $db = self::getConnection();
+        $stmt = $db->connection->prepare("SELECT * FROM users WHERE email=?");
+        $stmt->execute([$email]);
+        return $stmt->fetchObject();
+    }
+
+    public function getUserById($id)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM users WHERE id=?");
+        $stmt->execute([$id]);
+        return $stmt->fetchObject();
     }
 
 
@@ -49,9 +66,9 @@ class User extends Database
     {
         $form = Form::get_instance();
 
-        $db = Database::getConnection();
+        $user = User::getInstance();
 
-        $user = $db->getUserByEmail($form->post['email']);
+        $user = $user->getUserByEmail($form->post['email']);
 
         return false;
 

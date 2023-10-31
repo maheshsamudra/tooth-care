@@ -35,15 +35,15 @@ class Form extends Database
 
         $alert = new Alert();
 
-        $db = $this->getConnection();
+        $user = User::getUserByEmail($this->post['email']);
 
-        $user = $db->getUserByEmail($this->post['email']);
+        var_dump($user);
 
 
         if (!$user || md5($this->post['password']) !== $user->password) {
             $alert->add_danger_message("The credentials are incorrect. Please retry.");
         } else {
-            $user = User::getInstance($user);
+            $_SESSION["loggedInUserId"] = $user->id;
         }
 
         return $alert;

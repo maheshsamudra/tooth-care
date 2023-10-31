@@ -6,18 +6,22 @@ use APP\Models\User;
 
 class Controller
 {
+    private $user = null;
     function __construct()
     {
-        $user = User::getLoggedInUser();
+        $user = User::getInstance();
 
         if (!$user) {
             header("Location: /login");
             die;
         }
+        $this->user = $user;
     }
     protected function render($view, $data = [])
     {
         extract($data);
+
+        extract(["user" => $this->user]);
 
         include __DIR__ . "/../../Views/layout/header.php";
 
