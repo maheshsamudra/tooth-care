@@ -1,6 +1,6 @@
 <?php
 
-namespace ESOFT\Models;
+namespace APP\Models;
 
 class User
 {

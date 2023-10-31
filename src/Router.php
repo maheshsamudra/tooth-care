@@ -1,9 +1,9 @@
 <?php
 
-namespace ESOFT;
+namespace APP;
 
 
-use ESOFT\Controllers\ErrorController;
+use APP\Controllers\ErrorController;
 
 class Router
 {

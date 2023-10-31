@@ -1,9 +1,9 @@
 <?php
 
-use ESOFT\Controllers\AuthController;
-use ESOFT\Controllers\DashboardController;
-use ESOFT\Router;
-use ESOFT\Controllers\UserController;
+use APP\Controllers\AuthController;
+use APP\Controllers\DashboardController;
+use APP\Router;
+use APP\Controllers\UserController;
 
 
 define("DANGER", "danger");

@@ -1,11 +1,11 @@
 <?php
 
-namespace ESOFT\Controllers;
+namespace APP\Controllers;
 
-use ESOFT\Models\Alert;
-use ESOFT\Models\Form;
-use ESOFT\Models\User;
-use ESOFT\PublicController;
+use APP\Models\Alert;
+use APP\Models\Form;
+use APP\Models\User;
+use APP\PublicController;
 
 class AuthController extends PublicController
 {

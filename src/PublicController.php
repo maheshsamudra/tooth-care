@@ -1,6 +1,6 @@
 <?php
 
-namespace ESOFT;
+namespace APP;
 
 class PublicController extends Controller
 {
