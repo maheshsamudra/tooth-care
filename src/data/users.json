@@ -2,6 +2,12 @@
   {
     "first_name": "Mahesh",
     "last_name": "Samudra",
+    "email": "maheshsamudra@gmail.co",
+    "password": "mahesh123"
+  },
+  {
+    "first_name": "John",
+    "last_name": "Smith",
     "email": "maheshsamudra@gmail.com",
     "password": "mahesh123"
   }

@@ -2,9 +2,19 @@
     <div class="uk-width-2-3@s uk-width-1-2@m uk-margin-auto">
         <h1 class="uk-margin-large-bottom  uk-text-center">Create an Account</h1>
         <form action="/register" method='post' class="uk-form-stacked">
-            <div class="uk-margin">
-                <label for="name" class="uk-form-label">Name</label>
-                <input type="text" name="name" class="uk-input" placeholder="John Smith" required value="John Smith">
+            <div class="uk-grid uk-grid-column-small uk-child-width-1-2">
+                <div>
+                    <div class="uk-margin">
+                        <label for="first_name" class="uk-form-label">First Name</label>
+                        <input type="text" name="first_name" class="uk-input" placeholder="John" required value="John">
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-margin">
+                        <label for="name" class="uk-form-label">Last Name</label>
+                        <input type="text" name="last_name" class="uk-input" placeholder="Smith" required value="Smith">
+                    </div>
+                </div>
             </div>
             <div class="uk-margin">
                 <label for="email" class="uk-form-label">Email address</label>

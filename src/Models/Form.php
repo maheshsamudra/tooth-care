@@ -34,24 +34,16 @@ class Form
 
         $alert = new Alert();
 
-        if (!$this->valid_credentials()) {
-            $alert->add_danger_message("Failed to Login. Please try again.");
-        }
-        $user = User::validate_user_login($this->post['email'], $this->post['password']);
+        $user = User::validate_user_login();
         if ($user) {
             User::get_instance($user);
         } else {
-            $alert->add_danger_message("Incorrect email and password. Please retry.");
+            $alert->add_danger_message("The credentials are incorrect. Please retry.");
         }
-
 
         return $alert;
     }
 
-    private function valid_credentials()
-    {
-        return $this->post['email'] == "maheshsamudra@gmail.com" && $this->post['password'] == "mahesh123";
-    }
 
     public function handle_register()
     {
@@ -73,15 +65,26 @@ class Form
             $alert->add_danger_message("Please add a valid email address.");
         }
 
-        if (!$alert->type) {
-            $_SESSION['is_logged_in'] = true;
+        $user = User::validate_user_registration();
+
+        if ($user) {
+            $alert->add_danger_message("The email is already registered.");
+        } else {
+            User::register();
+            $user = User::validate_user_login();
+            if ($user) {
+                User::get_instance($user);
+            } else {
+                $alert->add_danger_message("Failed to register. Please retry.");
+            }
         }
+
         return $alert;
     }
 
     private function register_fields_are_filled()
     {
-        return isset($this->post['email']) && isset($this->post['name']) && isset($this->post['password']) && isset($this->post['confirm_password']);
+        return isset($this->post['email']) && isset($this->post['first_name']) && isset($this->post['last_name']) && isset($this->post['password']) && isset($this->post['confirm_password']);
     }
 
     private function register_passwords_match()

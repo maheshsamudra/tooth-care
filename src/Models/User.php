@@ -12,12 +12,14 @@ class User
     public $first_name;
     public $last_name;
     public $email;
+    private $password;
 
     private function __construct($user)
     {
         $this->first_name = $user->first_name;
         $this->last_name = $user->last_name;
         $this->email = $user->email;
+        $this->password = $user->password;
     }
 
     public static function get_instance($user)
@@ -44,27 +46,39 @@ class User
         return $this->email;
     }
 
-    public static function validate_user_login($email, $password)
+    public static function validate_user_login()
     {
+        $form = Form::get_instance();
+
         $users = new Data(
-            "users"
+            USERS
         );
         $user =
-            array_filter($users->data, fn ($item) => $item->email == $email);
+            array_filter($users->data, fn ($item) => $item->email == $form->post['email'] && $item->password == $form->post["password"]);
+
+        print_r($user);
 
         if ($user) {
-            return $user[0];
+            return reset($user);
         }
         return false;
     }
-    public static function validate_user_registration($email)
+    public static function validate_user_registration()
     {
+        $form = Form::get_instance();
         $users = new Data(
-            "users"
+            USERS
         );
         $user =
-            array_filter($users->data, fn ($item) => $item->email == $email);
+            array_filter($users->data, fn ($item) => $item->email == $form->post["email"]);
 
-        return !$user;
+        return $user;
+    }
+
+    public static function register()
+    {
+        $data = new Data();
+        $data->register_user();
+        return true;
     }
 }

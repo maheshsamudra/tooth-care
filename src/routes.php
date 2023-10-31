@@ -10,6 +10,9 @@ define("DANGER", "danger");
 define("WARNING", "warning");
 define("SUCCESS", "success");
 
+define("USERS", "users");
+define("APPOINTMENTS", "appointments");
+
 $router = new Router();
 
 $router->addRoute('/login', AuthController::class, 'index');
