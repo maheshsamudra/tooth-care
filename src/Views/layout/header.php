@@ -30,7 +30,7 @@
                     <div class="uk-navbar-right">
 
                         <ul class="uk-navbar-nav">
-                            <?php if (isset($_SESSION["is_logged_in"])) : ?>
+                            <?php if (isset($_SESSION["loggedInUserId"])) : ?>
                                 <li><a href="/logout" class="uk-flex uk-flex-center">Sign Out <span uk-icon="sign-out"></span>
                                     </a></li>
                             <?php endif; ?>

@@ -2,11 +2,15 @@
 
 namespace APP;
 
+use APP\Models\User;
+
 class Controller
 {
     function __construct()
     {
-        if (!isset($_SESSION["is_logged_in"]) || !$_SESSION["is_logged_in"]) {
+        $user = User::getLoggedInUser();
+
+        if (!$user) {
             header("Location: /login");
             die;
         }
@@ -15,11 +19,11 @@ class Controller
     {
         extract($data);
 
-        include "Views/layout/header.php";
+        include __DIR__ . "/../../Views/layout/header.php";
 
-        include "Views/$view.php";
+        include __DIR__ . "/../../Views/$view.php";
 
-        include "Views/layout/footer.php";
+        include __DIR__ . "/../../Views/layout/footer.php";
     }
     protected function redirect($location = "/")
     {

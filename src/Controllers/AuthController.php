@@ -6,6 +6,7 @@ use APP\Models\Alert;
 use APP\Models\Form;
 use APP\Models\User;
 use APP\PublicController;
+use Database;
 
 class AuthController extends PublicController
 {
@@ -16,7 +17,7 @@ class AuthController extends PublicController
 
         $alert = $login_form->handle_login();
 
-        if (isset($_SESSION["is_logged_in"])) {
+        if (isset($_SESSION["loggedInUserId"])) {
             $this->redirect();
         }
 
@@ -29,7 +30,7 @@ class AuthController extends PublicController
 
         $alert = $login_form->handle_register();
 
-        if (isset($_SESSION["is_logged_in"])) {
+        if (isset($_SESSION["loggedInUserId"])) {
             $this->redirect();
         }
 

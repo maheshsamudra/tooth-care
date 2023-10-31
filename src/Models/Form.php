@@ -3,8 +3,9 @@
 namespace APP\Models;
 
 use Error;
+use Database;
 
-class Form
+class Form extends Database
 {
     private static $instance = null;
 
@@ -34,11 +35,15 @@ class Form
 
         $alert = new Alert();
 
-        $user = User::validate_user_login();
-        if ($user) {
-            User::get_instance($user);
-        } else {
+        $db = $this->getConnection();
+
+        $user = $db->getUserByEmail($this->post['email']);
+
+
+        if (!$user || md5($this->post['password']) !== $user->password) {
             $alert->add_danger_message("The credentials are incorrect. Please retry.");
+        } else {
+            $user = User::getInstance($user);
         }
 
         return $alert;

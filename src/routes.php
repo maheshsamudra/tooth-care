@@ -13,6 +13,8 @@ define("SUCCESS", "success");
 define("USERS", "users");
 define("APPOINTMENTS", "appointments");
 
+define("DATABASE", __DIR__ . "/database");
+
 $router = new Router();
 
 $router->addRoute('/login', AuthController::class, 'index');

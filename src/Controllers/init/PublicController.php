@@ -7,7 +7,7 @@ class PublicController extends Controller
 
     function __construct()
     {
-        if (isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"]) {
+        if (isset($_SESSION["loggedInUserId"]) && $_SESSION["loggedInUserId"]) {
             header("Location: /");
             die;
         }

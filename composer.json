@@ -1,10 +1,13 @@
 {
-  "name": "maheshsamudra/tooth-care-php",
+  "name": "maheshsamudra/tooth-care",
   "type": "project",
   "autoload": {
     "psr-4": {
       "APP\\": "src/"
-    }
+    },
+    "classmap": [
+      "src/"
+    ]
   },
   "authors": [
     {
@@ -12,5 +15,7 @@
       "email": "maheshsamudra@gmail.com"
     }
   ],
-  "require": {}
+  "config": {
+    "use-parent-dir": true
+  }
 }
