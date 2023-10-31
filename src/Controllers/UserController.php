@@ -1,12 +1,14 @@
 <?php
 
-namespace MVC\Controllers;
+namespace ESOFT\Controllers;
 
-use MVC\Controller;
-use MVC\Models\User;
+use ESOFT\Controller;
+use ESOFT\Models\User;
 
-class UserController extends Controller {
-    public function index() {
+class UserController extends Controller
+{
+    public function index()
+    {
         $users = [
             new User('John Doe', 'john@example.com'),
             new User('Jane Doe', 'jane@example.com')
@@ -15,4 +17,3 @@ class UserController extends Controller {
         $this->render('user/index', ['title' => 'Dashboard', 'users' => $users]);
     }
 }
-    

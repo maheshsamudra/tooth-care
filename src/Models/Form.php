@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\Models;
+namespace ESOFT\Models;
 
 use Error;
 
@@ -35,7 +35,7 @@ class Form
         $alert = new Alert();
 
         if (!$this->valid_credentials()) {
-            $alert->setDangerMessage("Failed to Login. Please try again.");
+            $alert->add_danger_message("Failed to Login. Please try again.");
         } else {
             $_SESSION['is_logged_in'] = true;
             $user = new User($this->post['email']);
@@ -48,5 +48,46 @@ class Form
     private function valid_credentials()
     {
         return $this->post['email'] == "maheshsamudra@gmail.com" && $this->post['password'] == "mahesh123";
+    }
+
+    public function handle_register()
+    {
+        if (!$this->valid_method) {
+            return;
+        }
+
+        $alert = new Alert();
+
+        if (!$this->register_fields_are_filled()) {
+            $alert->add_danger_message("All the fields are required.");
+            return $alert;
+        }
+
+        if (!$this->register_passwords_match()) {
+            $alert->add_danger_message("Passwords should match.");
+        }
+        if (!$this->is_valid_email()) {
+            $alert->add_danger_message("Please add a valid email address.");
+        }
+
+        if (!$alert->type) {
+            $_SESSION['is_logged_in'] = true;
+        }
+        return $alert;
+    }
+
+    private function register_fields_are_filled()
+    {
+        return isset($this->post['email']) && isset($this->post['name']) && isset($this->post['password']) && isset($this->post['confirm_password']);
+    }
+
+    private function register_passwords_match()
+    {
+        return $this->post["password"] == $this->post["confirm_password"];
+    }
+
+    private function is_valid_email()
+    {
+        return filter_var($this->post["email"], FILTER_VALIDATE_EMAIL);
     }
 }

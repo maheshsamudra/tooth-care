@@ -1,9 +1,11 @@
 <?php
 
-namespace MVC\Models;
+namespace ESOFT\Models;
 
 class User
 {
+
+    private static $instance = null;
     public $email;
 
     public function __construct($email)
@@ -11,7 +13,16 @@ class User
         $this->email = $email;
     }
 
-    public function setUser($email)
+    public static function get_instance()
+    {
+        if (self::$instance == null) {
+            self::$instance = new Form();
+        }
+
+        return self::$instance;
+    }
+
+    public function setUser($email, $name = '')
     {
         $this->email = $email;
     }

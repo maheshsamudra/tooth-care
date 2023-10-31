@@ -1,9 +1,9 @@
 <?php
 
-namespace MVC;
+namespace ESOFT;
 
 
-use MVC\Controllers\ErrorController;
+use ESOFT\Controllers\ErrorController;
 
 class Router
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\Models;
+namespace ESOFT\Models;
 
 use Error;
 
@@ -14,12 +14,12 @@ class Alert
     {
     }
 
-    public function setDangerMessage($message)
+    public function add_danger_message($message)
     {
         if (!$message) {
             throw new Error("Alert message cannot be null!", 0);
         }
-        if ($this->type) {
+        if ($this->type && $this->type !== DANGER) {
             throw new Error("Cannot change the alert type once set!", 0);
         }
         $this->type = DANGER;

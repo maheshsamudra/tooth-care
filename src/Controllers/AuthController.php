@@ -1,11 +1,11 @@
 <?php
 
-namespace MVC\Controllers;
+namespace ESOFT\Controllers;
 
-use MVC\Models\Alert;
-use MVC\Models\Form;
-use MVC\Models\User;
-use MVC\PublicController;
+use ESOFT\Models\Alert;
+use ESOFT\Models\Form;
+use ESOFT\Models\User;
+use ESOFT\PublicController;
 
 class AuthController extends PublicController
 {
@@ -25,6 +25,14 @@ class AuthController extends PublicController
 
     public function register()
     {
-        $this->render('auth/register', ['title' => 'Get started with Tooth Care!']);
+        $login_form = Form::get_instance();
+
+        $alert = $login_form->handle_register();
+
+        if (isset($_SESSION["is_logged_in"])) {
+            $this->redirect();
+        }
+
+        $this->render('auth/register', ['title' => 'Get started with Tooth Care!', "alert" => $alert]);
     }
 }

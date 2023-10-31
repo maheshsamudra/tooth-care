@@ -1,9 +1,9 @@
 <?php
 
-namespace MVC\Controllers;
+namespace ESOFT\Controllers;
 
-use MVC\Controller;
-use MVC\Models\User;
+use ESOFT\Controller;
+use ESOFT\Models\User;
 
 class ErrorController extends Controller
 {
