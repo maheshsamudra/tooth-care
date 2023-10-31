@@ -48,21 +48,4 @@ class Form extends Database
 
         return $alert;
     }
-
-
-
-    private function register_fields_are_filled()
-    {
-        return isset($this->post['email']) && isset($this->post['first_name']) && isset($this->post['last_name']) && isset($this->post['password']) && isset($this->post['confirm_password']);
-    }
-
-    private function register_passwords_match()
-    {
-        return $this->post["password"] == $this->post["confirm_password"];
-    }
-
-    private function is_valid_email()
-    {
-        return filter_var($this->post["email"], FILTER_VALIDATE_EMAIL);
-    }
 }

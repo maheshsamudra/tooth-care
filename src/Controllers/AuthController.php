@@ -16,8 +16,9 @@ class AuthController extends PublicController
         $login_form = Form::get_instance();
 
         $alert = $login_form->handle_login();
+        $user = User::getInstance();
 
-        if (isset($_SESSION["loggedInUserId"])) {
+        if ($user) {
             $this->redirect();
         }
 

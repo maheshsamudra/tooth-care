@@ -59,22 +59,4 @@ class User extends Database
         $stmt->execute([$id]);
         return $stmt->fetchObject();
     }
-
-
-
-    public static function validate_user_login()
-    {
-        $form = Form::get_instance();
-
-        $user = User::getInstance();
-
-        $user = $user->getUserByEmail($form->post['email']);
-
-        return false;
-
-        if ($user) {
-            return reset($user);
-        }
-        return false;
-    }
 }

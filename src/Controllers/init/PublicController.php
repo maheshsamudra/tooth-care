@@ -2,12 +2,16 @@
 
 namespace APP;
 
+use APP\Models\User;
+
 class PublicController extends Controller
 {
 
     function __construct()
     {
-        if (isset($_SESSION["loggedInUserId"]) && $_SESSION["loggedInUserId"]) {
+        $user = User::getInstance();
+
+        if ($user) {
             header("Location: /");
             die;
         }
