@@ -9,12 +9,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $users = [
-            new User('John Doe', 'john@example.com'),
-            new User('Jane Doe', 'jane@example.com')
-        ];
 
-        $this->render('dashboard', ['title' => 'Dashboard', 'users' => $users]);
+        $this->render('dashboard', ['title' => 'Dashboard', 'users' => array()]);
     }
 
     public function logout()

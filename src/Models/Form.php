@@ -36,9 +36,12 @@ class Form
 
         if (!$this->valid_credentials()) {
             $alert->add_danger_message("Failed to Login. Please try again.");
+        }
+        $user = User::validate_user_login($this->post['email'], $this->post['password']);
+        if ($user) {
+            User::get_instance($user);
         } else {
-            $_SESSION['is_logged_in'] = true;
-            $user = new User($this->post['email']);
+            $alert->add_danger_message("Incorrect email and password. Please retry.");
         }
 
 
