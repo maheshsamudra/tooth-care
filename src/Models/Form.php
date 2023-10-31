@@ -4,17 +4,26 @@ namespace MVC\Models;
 
 use Error;
 
-class LoginForm
+class Form
 {
-    public $email;
-    public $password;
-    public $valid_method;
+    private static $instance = null;
 
-    public function __construct()
+    public $post;
+    public $valid_method = false;
+
+    private function __construct()
     {
         $this->valid_method = $_SERVER["REQUEST_METHOD"] == "POST";
-        $this->email = $_POST['email'] ?? '';
-        $this->password = $_POST['password'] ?? '';
+        $this->post = $_POST ?? array();
+    }
+
+    public static function get_instance()
+    {
+        if (self::$instance == null) {
+            self::$instance = new Form();
+        }
+
+        return self::$instance;
     }
 
     public function handle_login()
@@ -29,7 +38,7 @@ class LoginForm
             $alert->setDangerMessage("Failed to Login. Please try again.");
         } else {
             $_SESSION['is_logged_in'] = true;
-            $user = new User($this->email);
+            $user = new User($this->post['email']);
         }
 
 
@@ -38,6 +47,6 @@ class LoginForm
 
     private function valid_credentials()
     {
-        return $this->email == "maheshsamudra@gmail.com" && $this->password == "mahesh123";
+        return $this->post['email'] == "maheshsamudra@gmail.com" && $this->post['password'] == "mahesh123";
     }
 }

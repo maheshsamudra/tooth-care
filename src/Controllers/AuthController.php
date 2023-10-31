@@ -3,7 +3,7 @@
 namespace MVC\Controllers;
 
 use MVC\Models\Alert;
-use MVC\Models\LoginForm;
+use MVC\Models\Form;
 use MVC\Models\User;
 use MVC\PublicController;
 
@@ -12,7 +12,7 @@ class AuthController extends PublicController
     public function index()
     {
 
-        $login_form = new LoginForm();
+        $login_form = Form::get_instance();
 
         $alert = $login_form->handle_login();
 
