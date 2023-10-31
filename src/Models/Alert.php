@@ -8,7 +8,7 @@ class Alert
 {
     public $type;
     public $title;
-    public $message;
+    public $messages = array();
 
     public function __construct()
     {
@@ -19,7 +19,15 @@ class Alert
         if (!$message) {
             throw new Error("Alert message cannot be null!", 0);
         }
+        if ($this->type) {
+            throw new Error("Cannot change the alert type once set!", 0);
+        }
         $this->type = DANGER;
-        $this->message = $message;
+        $this->add_message($message);
+    }
+
+    private function add_message($message)
+    {
+        array_push($this->messages, $message);
     }
 }
