@@ -12,7 +12,6 @@ return array(
     'APP\\Controllers\\ErrorController' => $baseDir . '/src/Controllers/ErrorController.php',
     'APP\\Controllers\\UserController' => $baseDir . '/src/Controllers/UserController.php',
     'APP\\Models\\Alert' => $baseDir . '/src/Models/Alert.php',
-    'APP\\Models\\Data' => $baseDir . '/src/Models/Data.php',
     'APP\\Models\\Form' => $baseDir . '/src/Models/Form.php',
     'APP\\Models\\User' => $baseDir . '/src/Models/User.php',
     'APP\\PublicController' => $baseDir . '/src/Controllers/init/PublicController.php',

@@ -27,7 +27,6 @@ class ComposerStaticInit16040fe39db7783669eee510387c6dad
         'APP\\Controllers\\ErrorController' => __DIR__ . '/../..' . '/src/Controllers/ErrorController.php',
         'APP\\Controllers\\UserController' => __DIR__ . '/../..' . '/src/Controllers/UserController.php',
         'APP\\Models\\Alert' => __DIR__ . '/../..' . '/src/Models/Alert.php',
-        'APP\\Models\\Data' => __DIR__ . '/../..' . '/src/Models/Data.php',
         'APP\\Models\\Form' => __DIR__ . '/../..' . '/src/Models/Form.php',
         'APP\\Models\\User' => __DIR__ . '/../..' . '/src/Models/User.php',
         'APP\\PublicController' => __DIR__ . '/../..' . '/src/Controllers/init/PublicController.php',

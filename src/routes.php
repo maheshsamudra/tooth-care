@@ -6,18 +6,6 @@ use APP\Router;
 use APP\Controllers\UserController;
 
 
-define("DANGER", "danger");
-define("WARNING", "warning");
-define("SUCCESS", "success");
-
-define("USERS", "users");
-define("APPOINTMENTS", "appointments");
-
-define("DATABASE", __DIR__ . "/database");
-
-
-// echo password_hash("mahesh123", PASSWORD_DEFAULT);
-
 $router = new Router();
 
 $router->addRoute('/login', AuthController::class, 'index');
@@ -27,6 +15,9 @@ $router->addRoute('/logout', DashboardController::class, 'logout');
 $router->addRoute('/', DashboardController::class, 'index');
 $router->addRoute('/user', UserController::class, 'index');
 
+$router->addRoute('/add-appointment', DashboardController::class, 'addAppointment');
+$router->addRoute('/search-appointment?', DashboardController::class, 'searchAppointment');
 
+$uri =  $_SERVER['REQUEST_URI'];
 
-$router->dispatch($uri);
+$router->dispatch(strtok($uri, '?'));
