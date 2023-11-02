@@ -10,15 +10,15 @@ class User extends Database
 
     private static $instance = null;
 
-    public $first_name;
-    public $last_name;
+    public $firstName;
+    public $lastName;
     public $email;
 
     private function __construct($user)
     {
 
-        $this->first_name = $user->first_name;
-        $this->last_name = $user->last_name;
+        $this->firstName = $user->firstName;
+        $this->lastName = $user->lastName;
         $this->email = $user->email;
     }
 
@@ -48,7 +48,7 @@ class User extends Database
     public static function getUserByEmail($email)
     {
         $db = self::getConnection();
-        $stmt = $db->connection->prepare("SELECT * FROM users WHERE email=?");
+        $stmt = $db->connection->prepare("SELECT id, email, firstName, lastName FROM users WHERE email=?");
         $stmt->execute([$email]);
         return $stmt->fetchObject();
     }

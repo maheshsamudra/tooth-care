@@ -15,6 +15,9 @@ define("APPOINTMENTS", "appointments");
 
 define("DATABASE", __DIR__ . "/database");
 
+
+// echo password_hash("mahesh123", PASSWORD_DEFAULT);
+
 $router = new Router();
 
 $router->addRoute('/login', AuthController::class, 'index');

@@ -40,10 +40,10 @@ class Form extends Database
         var_dump($user);
 
 
-        if (!$user || md5($this->post['password']) !== $user->password) {
-            $alert->add_danger_message("The credentials are incorrect. Please retry.");
-        } else {
+        if ($user && !password_verify($this->post['password'], $user->password)) {
             $_SESSION["loggedInUserId"] = $user->id;
+        } else {
+            $alert->add_danger_message("The credentials are incorrect. Please retry.");
         }
 
         return $alert;

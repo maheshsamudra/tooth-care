@@ -32,7 +32,7 @@
                         <div class="uk-navbar-right">
 
                             <div class="uk-navbar-item">
-                                <div>Welcome <?php echo $user->first_name; ?>!</div>
+                                <div>Welcome <?php echo $user->firstName; ?>!</div>
                             </div>
 
                             <ul class="uk-navbar-nav">
