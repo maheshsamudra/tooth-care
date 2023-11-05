@@ -1,5 +1,6 @@
 <?php
 
+use APP\Controllers\AppointmentController;
 use APP\Controllers\AuthController;
 use APP\Controllers\DashboardController;
 use APP\Router;
@@ -16,8 +17,9 @@ $router->addRoute('/logout', DashboardController::class, 'logout');
 $router->addRoute('/', DashboardController::class, 'index');
 $router->addRoute('/user', UserController::class, 'index');
 
-$router->addRoute('/add-appointment', DashboardController::class, 'addAppointment');
-$router->addRoute('/search-appointment?', DashboardController::class, 'searchAppointment');
+$router->addRoute('/appointments/add', AppointmentController::class, 'add');
+$router->addRoute('/appointments/search', AppointmentController::class, 'search');
+$router->addRoute('/appointments/view', AppointmentController::class, 'view');
 
 $uri =  $_SERVER['REQUEST_URI'];
 

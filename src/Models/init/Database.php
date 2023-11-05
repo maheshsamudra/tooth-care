@@ -26,7 +26,7 @@ class Database
     {
         $instance = get_called_class();
         $arrayOfNames = explode("\\", $instance);
-        $table = strtolower(end($arrayOfNames)) . "s";
+        $table = lcFirst(end($arrayOfNames)) . "s";
 
         try {
             $db = self::getConnection();

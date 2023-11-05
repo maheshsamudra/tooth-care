@@ -56,7 +56,7 @@
             <?php if (isset($successMessages) && $successMessages) : ?>
                 <div class="uk-margin-top uk-margin-bottom">
                     <div class="uk-container">
-                        <div class="uk-alert uk-alert-warning">
+                        <div class="uk-alert uk-alert-success">
                             <a href class="uk-alert-close" uk-close></a>
                             <ul>
                                 <?php foreach ($successMessages as $message) {

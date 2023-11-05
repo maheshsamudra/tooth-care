@@ -4,7 +4,7 @@
             <div class="uk-width-1-1 uk-width-1-2@s uk-width-1-1@m">
                 <div class="uk-card uk-card-default uk-card-body  uk-margin-bottom">
                     <h4>Add Appointment</h4>
-                    <form method="get" action="/add-appointment">
+                    <form method="get" action="/appointments/add">
                         <input class="uk-input" type="number" name="phoneNumber" aria-label="phoneNumber" placeholder="Phone Number" required value="0712345678">
                         <div class="uk-margin-small">
                             <select name="date" id="date" class="uk-select">
