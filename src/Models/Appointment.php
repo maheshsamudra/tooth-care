@@ -8,7 +8,6 @@ class Appointment extends Database
 {
     public function __construct()
     {
-        $this->table = 'appointment';
     }
 
     public static function getAppointment($id)

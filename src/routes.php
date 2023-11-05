@@ -10,6 +10,7 @@ $router = new Router();
 
 $router->addRoute('/login', AuthController::class, 'index');
 $router->addRoute('/register', AuthController::class, 'register');
+
 $router->addRoute('/logout', DashboardController::class, 'logout');
 
 $router->addRoute('/', DashboardController::class, 'index');

@@ -12,14 +12,14 @@ class User extends Database
 
     public $firstName;
     public $lastName;
-    public $email;
+    public $username;
 
     private function __construct($user)
     {
 
         $this->firstName = $user->firstName;
         $this->lastName = $user->lastName;
-        $this->email = $user->email;
+        $this->username = $user->username;
     }
 
     public static function getInstance()
@@ -45,11 +45,11 @@ class User extends Database
         }
     }
 
-    public static function getUserByEmail($email)
+    public static function getUserByUsername($username)
     {
         $db = self::getConnection();
-        $stmt = $db->connection->prepare("SELECT id, email, firstName, lastName FROM users WHERE email=?");
-        $stmt->execute([$email]);
+        $stmt = $db->connection->prepare("SELECT id, username, firstName, lastName FROM users WHERE username=?");
+        $stmt->execute([$username]);
         return $stmt->fetchObject();
     }
 

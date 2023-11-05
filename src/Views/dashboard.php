@@ -5,6 +5,7 @@
                 <div class="uk-card uk-card-default uk-card-body  uk-margin-bottom">
                     <h4>Add Appointment</h4>
                     <form method="get" action="/add-appointment">
+                        <input class="uk-input uk-margin-small-bottom" type="number" name="phoneNumber" aria-label="phoneNumber" placeholder="Phone Number" required value="0712345678">
                         <div class="uk-inline uk-width-1-1">
                             <button class="uk-form-icon uk-form-icon-flip" type="submit" uk-icon="icon: chevron-right"></button>
                             <input class="uk-input" type="date" name="date" min="<?php echo date("Y-m-d"); ?>" aria-label="Date" placeholder="Date" required>

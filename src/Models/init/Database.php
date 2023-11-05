@@ -40,10 +40,7 @@ class Database
 
     public static function findById($id)
     {
-        $db = self::getConnection();
-        $stmt = $db->connection->prepare("SELECT * FROM self::table WHERE id=?");
-        $stmt->execute([$id]);
-        return $stmt->fetchObject();
+        return self::findWhere("id", $id);
     }
 
     public static function findAll()
@@ -52,6 +49,15 @@ class Database
         $db = self::getConnection();
         $stmt = $db->connection->prepare("SELECT * FROM $table");
         $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function findWhere($column, $value)
+    {
+        $table = self::getTheTableName();
+        $db = self::getConnection();
+        $stmt = $db->connection->prepare("SELECT * FROM $table WHERE ?=?");
+        $stmt->execute([$column, $value]);
         return $stmt->fetchAll();
     }
 }

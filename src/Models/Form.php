@@ -35,10 +35,7 @@ class Form extends Database
 
         $alert = new Alert();
 
-        $user = User::getUserByEmail($this->post['email']);
-
-        var_dump($user);
-
+        $user = User::getUserByUsername($this->post['username']);
 
         if ($user && !password_verify($this->post['password'], $user->password)) {
             $_SESSION["loggedInUserId"] = $user->id;
