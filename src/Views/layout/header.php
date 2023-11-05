@@ -51,13 +51,13 @@
 
         <div style="flex-grow: 1">
 
-            <?php if (isset($alert) && $alert->messages && $alert->type) : ?>
+            <?php if (isset($errorMessages) && $errorMessages) : ?>
                 <div class="uk-margin-top uk-margin-bottom">
                     <div class="uk-container">
-                        <div class="uk-alert-<?php echo $alert->type; ?>" uk-alert>
+                        <div class="uk-alert uk-alert-danger">
                             <a href class="uk-alert-close" uk-close></a>
                             <ul>
-                                <?php foreach ($alert->messages as $message) {
+                                <?php foreach ($errorMessages as $message) {
                                     echo "<li>$message</li>";
                                 } ?>
                             </ul>

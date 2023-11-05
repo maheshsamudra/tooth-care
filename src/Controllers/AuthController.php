@@ -13,15 +13,23 @@ class AuthController extends PublicController
     public function index()
     {
 
-        $login_form = Form::get_instance();
 
-        $alert = $login_form->handle_login();
+        if ($this->isPostRequest()) {
+            $user = User::getUserByUsername($this->post('username'));
+
+            if ($user && !password_verify($this->post('password'), $user->password)) {
+                $_SESSION["loggedInUserId"] = $user->id;
+            } else {
+                $this->addErrorMessage("The credentials are incorrect. Please retry.");
+            }
+        }
+
         $user = User::getInstance();
 
         if ($user) {
             $this->redirect();
         }
 
-        $this->render('auth/login', ['title' => 'Login to Tooth Care!', "alert" => $alert]);
+        $this->render('auth/login', ['title' => 'Login to Tooth Care!']);
     }
 }

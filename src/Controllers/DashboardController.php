@@ -35,7 +35,7 @@ class DashboardController extends Controller
         if (!$date || !$phoneNumber) {
             $this->addErrorMessage("Date and Phone Number are required.");
         }
-        $this->render('add-appointment', ['title' => 'Add Appointment', 'alert' => $alert]);
+        $this->render('add-appointment', ['title' => 'Add Appointment']);
     }
 
     public function searchAppointment()
