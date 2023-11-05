@@ -1,6 +1,6 @@
 <div class="uk-grid">
     <div class="uk-width-2-3@s uk-width-1-2@m uk-margin-auto">
-        <h1 class="uk-margin-large-bottom uk-text-center">Log in to your account</h1>
+        <h1 class="uk-margin-large-bottom uk-text-center">Welcome back!</h1>
         <form action="/login" method='post' class="uk-form-stacked">
             <div class="uk-margin">
                 <label for="username" class="uk-form-label">Username</label>

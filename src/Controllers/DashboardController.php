@@ -3,11 +3,10 @@
 namespace APP\Controllers;
 
 use APP\Controller;
-use APP\Models\Alert;
 use APP\Models\Appointment;
-use APP\Models\User;
+use APP\Models\Slot;
+use APP\Models\Patient;
 use Database;
-use SQLite3;
 
 class DashboardController extends Controller
 {
@@ -32,10 +31,22 @@ class DashboardController extends Controller
         $date = $this->get("date");
         $phoneNumber = $this->get("phoneNumber");
 
+        $patient = null;
+        $appointments = null;
+
         if (!$date || !$phoneNumber) {
             $this->addErrorMessage("Date and Phone Number are required.");
+        } else {
+            $patient = Patient::findOne('phoneNumber', $phoneNumber);
+            $appointments = Appointment::findWhere("date", $date);
+            $slot = Slot::findOne("day", date_format(date_create($date), "l"));
         }
-        $this->render('add-appointment', ['title' => 'Add Appointment']);
+
+        if (!$patient) {
+            $this->addWarningMessage("No existing customer found for the phone number - $phoneNumber. Please enter patients details.");
+        }
+
+        $this->render('add-appointment', ['title' => 'Add Appointment', 'patient' => $patient, "appointments" => $appointments, "slot" => $slot]);
     }
 
     public function searchAppointment()

@@ -4,19 +4,22 @@ namespace APP;
 
 use APP\Models\User;
 use APP\Models\Service;
-
+use APP\Models\Slot;
 use Error;
 
 class Controller
 {
     private $user = null;
     public $services = [];
+    public $slots = [];
 
     private $successMessages = [];
+    private $warningMessages = [];
     private $errorMessages = [];
 
     public $postValues;
     public $getValues;
+
 
     function __construct()
     {
@@ -30,16 +33,17 @@ class Controller
         } else {
             $this->user = $user;
             $this->services = Service::findAll();
+            $this->slots = Slot::findAll();
         }
     }
     protected function render($view, $data = [])
     {
         extract($data);
 
-        extract(["user" => $this->user, "services" => $this->services]);
+        extract(["user" => $this->user, "services" => $this->services, "slots" => $this->slots]);
 
 
-        extract(['errorMessages' => $this->errorMessages, 'successMessages' => $this->successMessages]);
+        extract(['errorMessages' => $this->errorMessages, 'successMessages' => $this->successMessages, 'warningMessages' => $this->warningMessages]);
 
         include __DIR__ . "/../../Views/layout/header.php";
 
@@ -87,5 +91,12 @@ class Controller
             throw new Error("Alert message cannot be null!", 0);
         }
         array_push($this->successMessages, $message);
+    }
+    public function addWarningMessage($message)
+    {
+        if (!$message) {
+            throw new Error("Alert message cannot be null!", 0);
+        }
+        array_push($this->warningMessages, $message);
     }
 }

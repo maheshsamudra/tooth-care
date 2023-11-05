@@ -23,7 +23,7 @@
                         <a class="uk-navbar-item uk-logo uk-text-primary uk-text-light" href="/" aria-label="Back to Home">
                             <img src="/assets/images/logo.png" alt="Logo" height="32" width="32">
                             Tooth Care
-                        </a>
+                        </a> | <h1 class="uk-margin-remove uk-h5 uk-text-light"><?php echo $title; ?></h1>
 
                     </div>
 
@@ -37,7 +37,7 @@
 
                             <ul class="uk-navbar-nav">
 
-                                <li><a href="/logout" class="uk-flex uk-flex-center"><span uk-icon="sign-out"></span>
+                                <li><a href="/logout" class="uk-flex uk-flex-center" uk-tooltip="title: Logout; pos: left"><span uk-icon="sign-out"></span>
                                     </a></li>
 
 
@@ -51,6 +51,33 @@
 
         <div style="flex-grow: 1">
 
+            <?php if (isset($successMessages) && $successMessages) : ?>
+                <div class="uk-margin-top uk-margin-bottom">
+                    <div class="uk-container">
+                        <div class="uk-alert uk-alert-warning">
+                            <a href class="uk-alert-close" uk-close></a>
+                            <ul>
+                                <?php foreach ($successMessages as $message) {
+                                    echo "<li>$message</li>";
+                                } ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?><?php if (isset($warningMessages) && $warningMessages) : ?>
+                <div class="uk-margin-top uk-margin-bottom">
+                    <div class="uk-container">
+                        <div class="uk-alert uk-alert-warning">
+                            <a href class="uk-alert-close" uk-close></a>
+                            <ul>
+                                <?php foreach ($warningMessages as $message) {
+                                        echo "<li>$message</li>";
+                                    } ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
             <?php if (isset($errorMessages) && $errorMessages) : ?>
                 <div class="uk-margin-top uk-margin-bottom">
                     <div class="uk-container">

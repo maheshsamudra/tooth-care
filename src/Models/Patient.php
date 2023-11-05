@@ -4,7 +4,7 @@ namespace APP\Models;
 
 use Database;
 
-class Customer extends Database
+class Patient extends Database
 {
     public function __construct()
     {

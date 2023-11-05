@@ -4,7 +4,6 @@ define("DANGER", "danger");
 define("WARNING", "warning");
 define("SUCCESS", "success");
 
-define("USERS", "users");
-define("APPOINTMENTS", "appointments");
+define("REGISTRATION_FEE", 1000);
 
 define("DATABASE", __DIR__ . "/database");
