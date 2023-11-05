@@ -28,6 +28,9 @@ class DashboardController extends Controller
 
     public function addAppointment()
     {
+        if ($this->isPostRequest()) {
+            $patient = Patient::createOrUpdate($this->postValues);
+        }
         $date = $this->get("date");
         $phoneNumber = $this->get("phoneNumber");
 
@@ -43,10 +46,12 @@ class DashboardController extends Controller
         }
 
         if (!$patient) {
-            $this->addWarningMessage("No existing customer found for the phone number - $phoneNumber. Please enter patients details.");
+            $this->addWarningMessage("No customer found for the phone number - $phoneNumber. Please enter patients details.");
         }
 
-        $this->render('add-appointment', ['title' => 'Add Appointment', 'patient' => $patient, "appointments" => $appointments, "slot" => $slot]);
+        $estimatedStartTime = $slot->from;
+
+        $this->render('add-appointment', ['title' => 'Add Appointment', 'patient' => $patient, "appointments" => $appointments, "slot" => $slot, 'appointmentNumber' => count($appointments) + 1, "estimatedStartTime" => $estimatedStartTime]);
     }
 
     public function searchAppointment()
