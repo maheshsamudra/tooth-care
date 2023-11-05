@@ -11,6 +11,9 @@ class PublicController extends Controller
     {
         $user = User::getInstance();
 
+        $this->postValues = $_POST ?? array();
+        $this->getValues = $_GET ?? array();
+
         if ($user) {
             header("Location: /");
             die;

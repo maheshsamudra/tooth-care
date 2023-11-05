@@ -8,7 +8,7 @@
                         <input class="uk-input uk-margin-small-bottom" type="number" name="phoneNumber" aria-label="phoneNumber" placeholder="Phone Number" required value="0712345678">
                         <div class="uk-inline uk-width-1-1">
                             <button class="uk-form-icon uk-form-icon-flip" type="submit" uk-icon="icon: chevron-right"></button>
-                            <input class="uk-input" type="date" name="date" min="<?php echo date("Y-m-d"); ?>" aria-label="Date" placeholder="Date" required>
+                            <input class="uk-input" type="date" name="date" min="<?php echo date("Y-m-d"); ?>" aria-label="Date" placeholder="Date" required value="2023-11-10">
                         </div>
                     </form>
 

@@ -13,9 +13,9 @@ class AuthController extends PublicController
     public function index()
     {
 
-
         if ($this->isPostRequest()) {
             $user = User::getUserByUsername($this->post('username'));
+
 
             if ($user && !password_verify($this->post('password'), $user->password)) {
                 $_SESSION["loggedInUserId"] = $user->id;
