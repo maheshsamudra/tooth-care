@@ -43,7 +43,7 @@ class Form extends Database
         if ($user && !password_verify($this->post['password'], $user->password)) {
             $_SESSION["loggedInUserId"] = $user->id;
         } else {
-            $alert->add_danger_message("The credentials are incorrect. Please retry.");
+            $alert->addDangerMessage("The credentials are incorrect. Please retry.");
         }
 
         return $alert;

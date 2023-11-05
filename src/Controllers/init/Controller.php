@@ -3,10 +3,13 @@
 namespace APP;
 
 use APP\Models\User;
+use APP\Models\Service;
 
 class Controller
 {
     private $user = null;
+    public $services = [];
+
     function __construct()
     {
         $user = User::getInstance();
@@ -14,14 +17,17 @@ class Controller
         if (!$user) {
             header("Location: /login");
             die;
+        } else {
+            $this->user = $user;
+            $this->services = Service::findAll();
         }
-        $this->user = $user;
     }
     protected function render($view, $data = [])
     {
         extract($data);
 
-        extract(["user" => $this->user]);
+        extract(["user" => $this->user, "services" => $this->services]);
+
 
         include __DIR__ . "/../../Views/layout/header.php";
 

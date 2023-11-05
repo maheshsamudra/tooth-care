@@ -21,4 +21,37 @@ class Database
 
         return self::$instance;
     }
+
+    public static function getTheTableName()
+    {
+        $instance = get_called_class();
+        $arrayOfNames = explode("\\", $instance);
+        $table = strtolower(end($arrayOfNames)) . "s";
+
+        try {
+            $db = self::getConnection();
+            $db->connection->query("SELECT 1 FROM {$table} LIMIT 1");
+            return $table;
+        } catch (Exception $e) {
+            throw new Error("The table doesn't exists!");
+            die();
+        }
+    }
+
+    public static function findById($id)
+    {
+        $db = self::getConnection();
+        $stmt = $db->connection->prepare("SELECT * FROM self::table WHERE id=?");
+        $stmt->execute([$id]);
+        return $stmt->fetchObject();
+    }
+
+    public static function findAll()
+    {
+        $table = self::getTheTableName();
+        $db = self::getConnection();
+        $stmt = $db->connection->prepare("SELECT * FROM $table");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

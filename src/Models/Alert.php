@@ -14,7 +14,7 @@ class Alert
     {
     }
 
-    public function add_danger_message($message)
+    public function addDangerMessage($message)
     {
         if (!$message) {
             throw new Error("Alert message cannot be null!", 0);
@@ -23,10 +23,10 @@ class Alert
             throw new Error("Cannot change the alert type once set!", 0);
         }
         $this->type = DANGER;
-        $this->add_message($message);
+        $this->addMessage($message);
     }
 
-    private function add_message($message)
+    private function addMessage($message)
     {
         array_push($this->messages, $message);
     }
