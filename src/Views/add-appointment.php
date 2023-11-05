@@ -48,7 +48,7 @@
                 <div class="uk-margin-bottom uk-grid uk-child-width-1-2@s">
                     <?php foreach ($services as $key => $service) : ?>
                         <div>
-                            <label class="uk-block"><input class="uk-checkbox" type="checkbox" value="<?php echo $service['id']; ?>">&nbsp;&nbsp;<?php echo $service['name']; ?></label>
+                            <label class="uk-block"><input class="uk-checkbox" type="checkbox" name="services[]" value="<?php echo $service['id']; ?>">&nbsp;&nbsp;<?php echo $service['name']; ?></label>
                         </div>
                     <?php endforeach; ?>
 

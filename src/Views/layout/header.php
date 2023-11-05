@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <link rel="stylesheet" href="/assets/css/uikit.min.css" />
+    <link rel="stylesheet" href="/assets/css/common.css" />
+
 
 </head>
 

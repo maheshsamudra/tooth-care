@@ -6,6 +6,7 @@ use APP\Controller;
 use APP\Models\Appointment;
 use APP\Models\Slot;
 use APP\Models\Patient;
+use APP\Models\Service;
 use Database;
 
 class DashboardController extends Controller
@@ -29,7 +30,20 @@ class DashboardController extends Controller
     public function addAppointment()
     {
         if ($this->isPostRequest()) {
+            // save or update the patient
             $patient = Patient::createOrUpdate($this->postValues);
+
+            // save the appointment
+            $appointment = Appointment::create($this->postValues);
+
+            print_r($this->postValues);
+
+
+            // save the services
+            Service::createMultiple($this->postValues, $appointment->id);
+
+            // redirect to view the created appointment
+            $this->redirect("/view-appointment?created=true");
         }
         $date = $this->get("date");
         $phoneNumber = $this->get("phoneNumber");

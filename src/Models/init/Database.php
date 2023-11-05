@@ -69,13 +69,4 @@ class Database
         $stmt->execute([$value]);
         return $stmt->fetchAll();
     }
-
-    public function save()
-    {
-        $table = self::getTheTableName();
-        $db = self::getConnection();
-        $stmt = $db->connection->prepare("INSERT INTO $table (name, phoneNumber, emailAddress, address) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$this->name, $object->phoneNumber, $object->emailAddress, $object->address]);
-        return $stmt->lastInsertId();
-    }
 }
