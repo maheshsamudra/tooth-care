@@ -5,10 +5,15 @@ namespace APP;
 use APP\Models\User;
 use APP\Models\Service;
 
+use Error;
+
 class Controller
 {
     private $user = null;
     public $services = [];
+
+    private $successMessages = [];
+    private $errorMessages = [];
 
     public $postValues;
     public $getValues;
@@ -33,6 +38,8 @@ class Controller
 
         extract(["user" => $this->user, "services" => $this->services]);
 
+
+        extract(['errorMessages' => $this->errorMessages, 'successMessages' => $this->successMessages]);
 
         include __DIR__ . "/../../Views/layout/header.php";
 
@@ -66,5 +73,19 @@ class Controller
     public function isGetRequest()
     {
         return $_SERVER["REQUEST_METHOD"] == "GET";
+    }
+    public function addErrorMessage($message)
+    {
+        if (!$message) {
+            throw new Error("Alert message cannot be null!", 0);
+        }
+        array_push($this->errorMessages, $message);
+    }
+    public function addSuccessMessage($message)
+    {
+        if (!$message) {
+            throw new Error("Alert message cannot be null!", 0);
+        }
+        array_push($this->successMessages, $message);
     }
 }

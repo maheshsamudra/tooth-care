@@ -3,6 +3,7 @@
 namespace APP\Controllers;
 
 use APP\Controller;
+use APP\Models\Alert;
 use APP\Models\Appointment;
 use APP\Models\User;
 use Database;
@@ -28,7 +29,13 @@ class DashboardController extends Controller
 
     public function addAppointment()
     {
-        $this->render('add-appointment', ['title' => 'Add Appointment', 'users' => array()]);
+        $date = $this->get("date");
+        $phoneNumber = $this->get("phoneNumber");
+
+        if (!$date || !$phoneNumber) {
+            $this->addErrorMessage("Date and Phone Number are required.");
+        }
+        $this->render('add-appointment', ['title' => 'Add Appointment', 'alert' => $alert]);
     }
 
     public function searchAppointment()
