@@ -1,3 +1,9 @@
+<?php
+$key = array_search(date("l"), array_column($slots, 'day'));
+$todaysSlot = $slots[$key];
+
+?>
+
 <div class="uk-grid">
     <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-4@l">
         <div class="uk-grid">
@@ -8,7 +14,7 @@
                         <input class="uk-input" type="number" name="phoneNumber" aria-label="phoneNumber" placeholder="Phone Number" required value="0712345678">
                         <div class="uk-margin-small">
                             <select name="date" id="date" class="uk-select">
-                                <?php if (array_search(date("l"), array_column($slots, 'day'))) : ?>
+                                <?php if ($todaysSlot->enabled) : ?>
                                     <option value="<?php echo date("Y-m-d"); ?>"><?php echo date("l, d M Y"); ?></option>
                                 <?php endif; ?>
                                 <?php foreach ($slots as $key => $slot) : ?>

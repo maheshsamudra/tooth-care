@@ -26,8 +26,8 @@ class Appointment extends Database
         $endMinute = 230;
 
         $db = self::getConnection();
-        $stmt = $db->connection->prepare("INSERT INTO appointments (date, start, startMinute, end, endMinute, duration, registrationFee, patientId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$values['date'], $start, $startMinute, $end, $endMinute, $endMinute - $startMinute, $values["registrationFee"], $values["patientId"]]);
+        $stmt = $db->connection->prepare("INSERT INTO appointments (date, start, startMinute, end, endMinute, duration, registrationFee, patientId, appointmentNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$values['date'], $start, $startMinute, $end, $endMinute, $endMinute - $startMinute, $values["registrationFee"], $values["patientId"], $values['appointmentNumber']]);
         return self::findById($db->connection->lastInsertId());
     }
 }

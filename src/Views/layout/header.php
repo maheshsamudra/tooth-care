@@ -57,7 +57,7 @@
                 <div class="uk-margin-top uk-margin-bottom">
                     <div class="uk-container">
                         <div class="uk-alert uk-alert-success">
-                            <a href class="uk-alert-close" uk-close></a>
+                            <a href="#" class="uk-alert-close" uk-close></a>
                             <ul>
                                 <?php foreach ($successMessages as $message) {
                                     echo "<li>$message</li>";
@@ -66,25 +66,28 @@
                         </div>
                     </div>
                 </div>
-                <?php endif; ?><?php if (isset($warningMessages) && $warningMessages) : ?>
+            <?php endif; ?>
+
+            <?php if (isset($warningMessages) && $warningMessages) : ?>
                 <div class="uk-margin-top uk-margin-bottom">
                     <div class="uk-container">
                         <div class="uk-alert uk-alert-warning">
-                            <a href class="uk-alert-close" uk-close></a>
+                            <a href="#" class=" uk-alert-close" uk-close></a>
                             <ul>
                                 <?php foreach ($warningMessages as $message) {
-                                        echo "<li>$message</li>";
-                                    } ?>
+                                    echo "<li>$message</li>";
+                                } ?>
                             </ul>
                         </div>
                     </div>
                 </div>
             <?php endif; ?>
+
             <?php if (isset($errorMessages) && $errorMessages) : ?>
                 <div class="uk-margin-top uk-margin-bottom">
                     <div class="uk-container">
                         <div class="uk-alert uk-alert-danger">
-                            <a href class="uk-alert-close" uk-close></a>
+                            <a href="#" class="uk-alert-close" uk-close></a>
                             <ul>
                                 <?php foreach ($errorMessages as $message) {
                                     echo "<li>$message</li>";

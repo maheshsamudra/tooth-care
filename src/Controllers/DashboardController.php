@@ -14,11 +14,13 @@ class DashboardController extends Controller
     public function index()
     {
 
+
+
         $db = Database::getConnection();
         $stmt = $db->connection->prepare("SELECT * FROM appointments WHERE date=?");
         $stmt->execute([date("Y-m-d")]);
 
-        $this->render('dashboard', ['title' => 'Dashboard', 'users' => array()]);
+        $this->render('dashboard', ['title' => 'Dashboard']);
     }
 
     public function logout()

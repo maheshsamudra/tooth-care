@@ -21,12 +21,6 @@ class AppointmentController extends Controller
             // save the appointment
             $appointment = Appointment::create($this->postValues);
 
-            print_r($this->postValues);
-
-
-            // save the services
-            Service::createMultiple($this->postValues, $appointment->id);
-
             // redirect to view the created appointment
             $this->redirect("/appointments/view?created=true&id=$appointment->id");
         }
@@ -65,7 +59,7 @@ class AppointmentController extends Controller
         }
         $appointment = Appointment::findById($this->get("id"));
         $obtainedServices = ObtainedService::findWhere("appointmentId", $appointment->id);
-        print_r($obtainedServices);
-        $this->render('appointments/view', ['title' => 'View Appointment', "appointment" => $appointment]);
+        $patient = Patient::findById($appointment->patientId);
+        $this->render('appointments/view', ['title' => 'View Appointment', "appointment" => $appointment, "obtainedServices" => $obtainedServices, "patient" => $patient]);
     }
 }
