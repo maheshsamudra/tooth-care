@@ -18,4 +18,15 @@ class ObtainedService extends Database
 
         return  $stmt->fetchAll();
     }
+
+    public static function createMultiple($values, $appointmentId)
+    {
+        $db = self::getConnection();
+        $stmt = $db->connection->prepare("INSERT INTO obtainedServices (appointmentId, service, price) VALUES (?, ?, ?)");
+        for ($i = 0; $i < count($values['services']); $i++) {
+            $service = Service::findById($values['services'][$i]);
+            $stmt->execute([$appointmentId, $service->name, $service->price]);
+        }
+        return true;
+    }
 }

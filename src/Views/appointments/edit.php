@@ -32,7 +32,7 @@
                             $key = array_search($service['id'], array_column($obtainedServices, 'serviceId'));
                             ?>
                             <label for="service<?php echo $service['id']; ?>" class="uk-display-block" style="padding-top: 6px;">
-                                <input class="uk-checkbox" name="services[]" type="checkbox" <?php if ($key) : ?>checked<?php endif; ?> id="service<?php echo $service['id']; ?>"> <?php echo $service['name']; ?>
+                                <input class="uk-checkbox" name="services[]" type="checkbox" <?php if ($key) : ?>checked<?php endif; ?> id="service<?php echo $service['id']; ?>" value="<?php echo $service['id']; ?>"> <?php echo $service['name']; ?>
                             </label>
                         <?php endforeach; ?>
 

@@ -31,6 +31,11 @@ class Appointment extends Database
         return self::findById($db->connection->lastInsertId());
     }
 
+    public static function update($values)
+    {
+        // update the appointment
+    }
+
     public static function getAppointmentsForDate($date)
     {
         $db = self::getConnection();

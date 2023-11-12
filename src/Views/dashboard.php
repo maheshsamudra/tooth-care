@@ -1,8 +1,3 @@
-<?php
-$key = array_search(date("l"), array_column($slots, 'day'));
-$todaysSlot = $slots[$key];
-?>
-
 <div class="uk-grid">
     <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-4@l">
         <div class="uk-grid">

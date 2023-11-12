@@ -72,10 +72,12 @@ class AppointmentController extends Controller
     {
         if ($this->isPostRequest()) {
             // save or update the patient
-            // $patient = Patient::createOrUpdate($this->postValues);
+            $patient = Patient::createOrUpdate($this->postValues);
 
             // save the appointment
-            // $appointment = Appointment::create($this->postValues);
+            $appointment = Appointment::update($this->postValues);
+
+            $services = ObtainedService::createMultiple($this->postValues, $this->post('id'));
 
             // redirect to view the created appointment
             $id = $this->post('id');

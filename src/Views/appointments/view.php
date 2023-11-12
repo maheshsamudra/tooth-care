@@ -12,9 +12,11 @@
                     <td>Services</td>
                     <td>
                         <?php if (count($obtainedServices) > 0) : ?>
-                            <?php foreach ($obtainedServices as $key => $value) : ?>
-                                <?php echo $value['name']; ?>
-                            <?php endforeach; ?>
+                            <ul>
+                                <?php foreach ($obtainedServices as $key => $value) : ?>
+                                    <li><?php echo $value['service']; ?></li>
+                                <?php endforeach; ?>
+                            </ul>
                         <?php else : ?>
                             No services
                         <?php endif; ?>
