@@ -13,14 +13,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $appointments =  Appointment::getAppointmentsForDate($this->get("date"));
 
+        $availableDates = Slot::getNextAvailableDates();
 
+        $pickedDate = !$this->get("date") ? date("Y-m-d") : $this->get("date");
 
-        $db = Database::getConnection();
-        $stmt = $db->connection->prepare("SELECT * FROM appointments WHERE date=?");
-        $stmt->execute([date("Y-m-d")]);
-
-        $this->render('dashboard', ['title' => 'Dashboard']);
+        $this->render('dashboard', ['title' => 'Dashboard', 'appointments' => $appointments, "availableDates" => $availableDates, 'pickedDate' => $pickedDate]);
     }
 
     public function logout()

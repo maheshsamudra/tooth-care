@@ -30,4 +30,23 @@ class Appointment extends Database
         $stmt->execute([$values['date'], $start, $startMinute, $end, $endMinute, $endMinute - $startMinute, $values["registrationFee"], $values["patientId"], $values['appointmentNumber']]);
         return self::findById($db->connection->lastInsertId());
     }
+
+    public static function getAppointmentsForDate($date)
+    {
+        $db = self::getConnection();
+        $pickedDate = !$date ? date("Y-m-d") : $date;
+        $stmt = $db->connection->prepare("SELECT appointment.*, patient.name, patient.phoneNumber FROM appointments as appointment JOIN patients as patient ON patient.id = appointment.patientId WHERE patient.id = appointment.patientId AND appointment.date=?");
+        $stmt->execute([$pickedDate]);
+
+        return  $stmt->fetchAll();
+    }
+
+    public static function searchAppointment($id, $date)
+    {
+        $db = self::getConnection();
+        $stmt = $db->connection->prepare("SELECT * FROM appointments WHERE appointmentNumber=? AND date=?");
+        $stmt->execute([$id, $date]);
+
+        return  $stmt->fetchObject();
+    }
 }

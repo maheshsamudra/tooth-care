@@ -1,21 +1,41 @@
-<?php if ($slot->from) : ?>
     <form action="" method="post" class="uk-form-horizontal">
+        <input type="text" name="id" hidden value="<?php echo $appointment->id; ?>">
         <div class="uk-grid">
             <div class="uk-width-1-2@m uk-margin-auto">
 
                 <h4>Appointment Details</h4>
-                <h5>Appointment Number: <?php echo $appointmentNumber; ?></h5>
+                <h5>Appointment Number: <?php echo $appointment->appointmentNumber; ?></h5>
                 <input type="text" name="appointmentNumber" value="<?php echo $appointmentNumber; ?>" hidden>
                 <div class="uk-margin">
                     <label for="date" class="uk-form-label">Date</label>
                     <div class="uk-form-controls">
-                        <input type="date" name="date" class="uk-input" placeholder="" required value="<?php echo $_GET['date']; ?>" readonly>
+                        <select name="date" id="date" class="uk-select">
+                            <?php foreach ($availableDates as $key => $slot) : ?>
+                                <option value="<?php echo $slot['value']; ?>" <?php if ($slot['value'] == $appointment->date) : ?>selected<?php endif; ?>><?php echo $slot['label']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                 </div>
                 <div class="uk-margin">
                     <label for="registrationFee" class="uk-form-label">Registration Fee</label>
                     <div class="uk-form-controls">
-                        <input class="uk-checkbox" name="registrationFeePaid" type="checkbox">
+                        <input class="uk-checkbox uk-margin-small-top" name="registrationFeePaid" type="checkbox" <?php if ($appointment->registrationFee == 1000) : ?>checked<?php endif; ?>>
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                    <label for="" class="uk-form-label">Services</label>
+                    <div class="uk-form-controls">
+
+                        <?php foreach ($services as $key => $service) : ?>
+                            <?php
+                            $key = array_search($service['id'], array_column($obtainedServices, 'serviceId'));
+                            ?>
+                            <label for="service<?php echo $service['id']; ?>" class="uk-display-block" style="padding-top: 6px;">
+                                <input class="uk-checkbox" name="services[]" type="checkbox" <?php if ($key) : ?>checked<?php endif; ?> id="service<?php echo $service['id']; ?>"> <?php echo $service['name']; ?>
+                            </label>
+                        <?php endforeach; ?>
+
                     </div>
                 </div>
 
@@ -49,19 +69,9 @@
                     </div>
                 </div>
 
-
-
-
-
-
                 <div class="uk-text-right uk-margin">
-                    <button class="uk-button uk-button-primary" type="submit">Add</button>
+                    <button class="uk-button uk-button-primary" type="submit">Update</button>
                 </div>
             </div>
         </div>
     </form>
-<?php else : ?>
-    <div>
-        <p>Cannot make appointments today. Please change the date.</p>
-    </div>
-<?php endif; ?>

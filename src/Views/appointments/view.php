@@ -39,6 +39,10 @@
             </tbody>
         </table>
 
-        <a href="/" class="uk-button uk-button-default">Back to Home Page</a>
+        <div class="uk-flex uk-flex-between">
+            <a href="/" class="uk-button uk-button-default">Back to Home Page</a>
+
+            <a href="/appointments/edit?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary">Update</a>
+        </div>
     </div>
 </div>

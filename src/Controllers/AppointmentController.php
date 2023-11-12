@@ -49,7 +49,10 @@ class AppointmentController extends Controller
 
     public function search()
     {
-        $this->render('appointments/search', ['title' => 'Search Appointment']);
+        $appointment = Appointment::searchAppointment($this->getValues["appointmentNumber"], $this->getValues["date"]);
+        $patient = Patient::findById($appointment->patientId);
+        $obtainedServices = ObtainedService::findByAppointmentId($appointment->id);
+        $this->render('appointments/search', ['title' => 'Search Appointment', 'appointment' => $appointment, 'patient' => $patient, 'services' => $obtainedServices]);
     }
 
     public function view()
@@ -57,9 +60,23 @@ class AppointmentController extends Controller
         if ($this->get("created")) {
             $this->addSuccessMessage("Appointment created successfully.");
         }
-        $appointment = Appointment::findById($this->get("id"));
+        $appointment = $this->get("id") ? Appointment::findById($this->get("id")) : Appointment::searchAppointment($this->get("appointmentNumber"), $this->get("date"));
         $obtainedServices = ObtainedService::findWhere("appointmentId", $appointment->id);
         $patient = Patient::findById($appointment->patientId);
         $this->render('appointments/view', ['title' => 'View Appointment', "appointment" => $appointment, "obtainedServices" => $obtainedServices, "patient" => $patient]);
+    }
+
+    public function edit()
+    {
+        if ($this->get("created")) {
+            $this->addSuccessMessage("Appointment created successfully.");
+        }
+        $appointment = Appointment::findById($this->get("id"));
+        $obtainedServices = ObtainedService::findWhere("appointmentId", $appointment->id);
+        $patient = Patient::findById($appointment->patientId);
+        $availableDates = Slot::getNextAvailableDates();
+        $services = Service::findAll();
+
+        $this->render('appointments/edit', ['title' => 'View Appointment', "appointment" => $appointment, "obtainedServices" => $obtainedServices, "patient" => $patient, 'availableDates' => $availableDates, 'services' => $services]);
     }
 }

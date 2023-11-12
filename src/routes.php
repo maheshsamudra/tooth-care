@@ -20,6 +20,7 @@ $router->addRoute('/user', UserController::class, 'index');
 $router->addRoute('/appointments/add', AppointmentController::class, 'add');
 $router->addRoute('/appointments/search', AppointmentController::class, 'search');
 $router->addRoute('/appointments/view', AppointmentController::class, 'view');
+$router->addRoute('/appointments/edit', AppointmentController::class, 'edit');
 
 $uri =  $_SERVER['REQUEST_URI'];
 
