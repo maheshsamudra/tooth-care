@@ -57,7 +57,6 @@
                 <div class="uk-margin-top uk-margin-bottom">
                     <div class="uk-container">
                         <div class="uk-alert uk-alert-success">
-                            <a href="#" class="uk-alert-close" uk-close></a>
                             <ul>
                                 <?php foreach ($successMessages as $message) {
                                     echo "<li>$message</li>";
@@ -72,7 +71,6 @@
                 <div class="uk-margin-top uk-margin-bottom">
                     <div class="uk-container">
                         <div class="uk-alert uk-alert-warning">
-                            <a href="#" class=" uk-alert-close" uk-close></a>
                             <ul>
                                 <?php foreach ($warningMessages as $message) {
                                     echo "<li>$message</li>";
@@ -87,7 +85,6 @@
                 <div class="uk-margin-top uk-margin-bottom">
                     <div class="uk-container">
                         <div class="uk-alert uk-alert-danger">
-                            <a href="#" class="uk-alert-close" uk-close></a>
                             <ul>
                                 <?php foreach ($errorMessages as $message) {
                                     echo "<li>$message</li>";

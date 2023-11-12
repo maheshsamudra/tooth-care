@@ -59,6 +59,8 @@ class AppointmentController extends Controller
     {
         if ($this->get("created")) {
             $this->addSuccessMessage("Appointment created successfully.");
+        } else if ($this->get("updates")) {
+            $this->addSuccessMessage("Appointment updated successfully.");
         }
         $appointment = $this->get("id") ? Appointment::findById($this->get("id")) : Appointment::searchAppointment($this->get("appointmentNumber"), $this->get("date"));
         $obtainedServices = ObtainedService::findWhere("appointmentId", $appointment->id);
@@ -68,9 +70,19 @@ class AppointmentController extends Controller
 
     public function edit()
     {
-        if ($this->get("created")) {
-            $this->addSuccessMessage("Appointment created successfully.");
+        if ($this->isPostRequest()) {
+            // save or update the patient
+            // $patient = Patient::createOrUpdate($this->postValues);
+
+            // save the appointment
+            // $appointment = Appointment::create($this->postValues);
+
+            // redirect to view the created appointment
+            $id = $this->post('id');
+            $this->redirect("/appointments/view?updates=true&id=$id");
         }
+
+
         $appointment = Appointment::findById($this->get("id"));
         $obtainedServices = ObtainedService::findWhere("appointmentId", $appointment->id);
         $patient = Patient::findById($appointment->patientId);
