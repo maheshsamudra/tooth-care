@@ -82,6 +82,7 @@ class AppointmentController extends Controller
             // redirect to view the created appointment
             $id = $this->post('id');
             $this->redirect("/appointments/view?updates=true&id=$id");
+            die();
         }
 
 
@@ -91,6 +92,6 @@ class AppointmentController extends Controller
         $availableDates = Slot::getNextAvailableDates();
         $services = Service::findAll();
 
-        $this->render('appointments/edit', ['title' => 'View Appointment', "appointment" => $appointment, "obtainedServices" => $obtainedServices, "patient" => $patient, 'availableDates' => $availableDates, 'services' => $services]);
+        $this->render('appointments/edit', ['title' => 'Modify Appointment', "appointment" => $appointment, "obtainedServices" => $obtainedServices, "patient" => $patient, 'availableDates' => $availableDates, 'services' => $services]);
     }
 }

@@ -31,7 +31,7 @@
 
                     <?php if (isset($user)) : ?>
 
-                        <div class="uk-navbar-right">
+                        <div class="uk-navbar-right hide-on-print">
 
                             <div class="uk-navbar-item">
                                 <div>Welcome <?php echo $user->firstName; ?>!</div>

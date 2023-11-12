@@ -1,3 +1,11 @@
 input[readonly] {
-  background: #f7f7f7 !important;
+  opacity: 0.6;
+}
+
+@media print {
+  .hide-on-print,
+  button,
+  .uk-button {
+    display: none;
+  }
 }

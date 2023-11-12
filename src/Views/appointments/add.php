@@ -13,9 +13,9 @@
                     </div>
                 </div>
                 <div class="uk-margin">
-                    <label for="registrationFee" class="uk-form-label">Registration Fee</label>
+                    <label for="registrationFee" class="uk-form-label">Registration Fee Received?</label>
                     <div class="uk-form-controls">
-                        <input class="uk-checkbox" name="registrationFeePaid" type="checkbox">
+                        <input class="uk-checkbox uk-margin-small-top" name="registrationFeePaid" type="checkbox">
                     </div>
                 </div>
 

@@ -8,7 +8,6 @@
                         <input class="uk-input" type="number" name="phoneNumber" aria-label="phoneNumber" placeholder="Phone Number" required value="0712345678">
                         <div class="uk-margin-small">
                             <select name="date" id="date" class="uk-select">
-                                <option value="">Date</option>
                                 <?php foreach ($availableDates as $key => $slot) : ?>
                                     <option value="<?php echo $slot['value']; ?>"><?php echo $slot['label']; ?></option>
                                 <?php endforeach; ?>

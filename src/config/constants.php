@@ -1,5 +1,8 @@
 <?php
 
+date_default_timezone_set('Asia/Colombo');
+
+
 define("DANGER", "danger");
 define("WARNING", "warning");
 define("SUCCESS", "success");

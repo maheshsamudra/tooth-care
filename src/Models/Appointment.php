@@ -25,15 +25,24 @@ class Appointment extends Database
         $end = "3:30 PM";
         $endMinute = 230;
 
+        $registrationFee = $values["registrationFeePaid"] ? REGISTRATION_FEE : 0;
+
         $db = self::getConnection();
         $stmt = $db->connection->prepare("INSERT INTO appointments (date, start, startMinute, end, endMinute, duration, registrationFee, patientId, appointmentNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$values['date'], $start, $startMinute, $end, $endMinute, $endMinute - $startMinute, $values["registrationFee"], $values["patientId"], $values['appointmentNumber']]);
+        $stmt->execute([$values['date'], $start, $startMinute, $end, $endMinute, $endMinute - $startMinute, $registrationFee, $values["patientId"], $values['appointmentNumber']]);
         return self::findById($db->connection->lastInsertId());
     }
 
     public static function update($values)
     {
-        // update the appointment
+        $db = self::getConnection();
+
+        $paidAt = count($values['services']) > 0 && $values['id'] ? date("Y-m-d H:i:s") : null;
+        $registrationFee = $values['registrationFeePaid'] ? 1000 : null;
+
+        $stmt = $db->connection->prepare("UPDATE appointments SET paidAt = ?, date=?, registrationFee=?");
+        $stmt->execute([$paidAt, $values['date'], $registrationFee]);
+        return true;
     }
 
     public static function getAppointmentsForDate($date)
