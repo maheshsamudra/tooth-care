@@ -21,6 +21,7 @@ $router->addRoute('/appointments/add', AppointmentController::class, 'add');
 $router->addRoute('/appointments/search', AppointmentController::class, 'search');
 $router->addRoute('/appointments/view', AppointmentController::class, 'view');
 $router->addRoute('/appointments/edit', AppointmentController::class, 'edit');
+$router->addRoute('/appointments/mark-as-paid', AppointmentController::class, 'markAsPaid');
 
 $uri =  $_SERVER['REQUEST_URI'];
 

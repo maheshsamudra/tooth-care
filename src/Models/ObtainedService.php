@@ -21,11 +21,19 @@ class ObtainedService extends Database
 
     public static function createMultiple($values, $appointmentId)
     {
+        if (!isset($values['services'])) {
+            return false;
+        }
         $db = self::getConnection();
-        $stmt = $db->connection->prepare("INSERT INTO obtainedServices (appointmentId, service, price) VALUES (?, ?, ?)");
+
+        // delete old ones
+        $stmt = $db->connection->prepare("DELETE FROM obtainedServices WHERE appointmentId=$appointmentId");
+        $stmt->execute();
+
+        $stmt = $db->connection->prepare("INSERT INTO obtainedServices (appointmentId, service, price, serviceId) VALUES (?, ?, ?, ?)");
         for ($i = 0; $i < count($values['services']); $i++) {
             $service = Service::findById($values['services'][$i]);
-            $stmt->execute([$appointmentId, $service->name, $service->price]);
+            $stmt->execute([$appointmentId, $service->name, $service->price, $service->id]);
         }
         return true;
     }

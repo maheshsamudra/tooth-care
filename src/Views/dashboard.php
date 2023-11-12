@@ -66,7 +66,6 @@
                             <td><?php echo $value['phoneNumber']; ?></td>
                             <td class="uk-text-right">
                                 <a href="/appointments/view?id=<?php echo $value["id"]; ?>" class="uk-button uk-button-default uk-button-small">View</a>
-                                <a href="/appointments/edit?id=<?php echo $value["id"]; ?>" class="uk-button uk-button-secondary uk-button-small">Update</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -1,4 +1,4 @@
-<?php $total = $appointment->registrationFee ?? 0; ?>
+<?php $total = !$appointment->registrationFee ? 0 : $appointment->registrationFee; ?>
 
 <div class="uk-grid">
     <div class="uk-width-1-2@m uk-margin-auto">
@@ -25,7 +25,7 @@
                 </tr>
                 <tr>
                     <td>Registration Fee</td>
-                    <td class="uk-text-right"><?php echo $appointment->registrationFee ?? "Rs. 0"; ?></td>
+                    <td class="uk-text-right">Rs.<?php echo number_format($appointment->registrationFee); ?></td>
                 </tr>
                 <tr>
                     <td>Services</td>
@@ -44,8 +44,8 @@
                 </tr>
                 <?php if (!!$total) : ?>
                     <tr>
-                        <td>Total</td>
-                        <td class="uk-text-right">
+                        <td class="uk-text-large">Total</td>
+                        <td class="uk-text-right uk-text-large">
                             Rs. <?php echo number_format($total); ?>
                         </td>
                     </tr>
@@ -56,12 +56,17 @@
 
         <?php if (!!$appointment->paidAt) : ?>
             <p>Payment completed on <?php echo $appointment->paidAt; ?></p>
+            <p class="only-print">Thank you. We wish you good health ahead!</p>
         <?php endif; ?>
 
         <div class="uk-flex uk-flex-between">
             <a href="/" class="uk-button uk-button-default">Back to Home Page</a>
 
-            <?php if (count($obtainedServices) > 0) : ?>
+            <?php if (!$appointment->registrationFee) : ?>
+                <a href="/appointments/edit?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary">Update</a>
+            <?php elseif (!$appointment->paidAt && count($obtainedServices) > 0) : ?>
+                <a href="/appointments/mark-as-paid?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary">Mark as paid</a>
+            <?php elseif (count($obtainedServices) > 0) : ?>
                 <button onclick="window.print();" class="uk-button uk-button-secondary">Print Invoice</button>
             <?php else : ?>
                 <a href="/appointments/edit?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary">Update</a>

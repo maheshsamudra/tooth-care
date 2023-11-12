@@ -20,16 +20,11 @@ class Appointment extends Database
 
     public static function create($values)
     {
-        $start = "3:00 PM";
-        $startMinute = 200;
-        $end = "3:30 PM";
-        $endMinute = 230;
-
         $registrationFee = $values["registrationFeePaid"] ? REGISTRATION_FEE : 0;
 
         $db = self::getConnection();
-        $stmt = $db->connection->prepare("INSERT INTO appointments (date, start, startMinute, end, endMinute, duration, registrationFee, patientId, appointmentNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$values['date'], $start, $startMinute, $end, $endMinute, $endMinute - $startMinute, $registrationFee, $values["patientId"], $values['appointmentNumber']]);
+        $stmt = $db->connection->prepare("INSERT INTO appointments (date, registrationFee, patientId, appointmentNumber) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$values['date'], $registrationFee, $values["patientId"], $values['appointmentNumber']]);
         return self::findById($db->connection->lastInsertId());
     }
 
@@ -37,11 +32,21 @@ class Appointment extends Database
     {
         $db = self::getConnection();
 
-        $paidAt = count($values['services']) > 0 && $values['id'] ? date("Y-m-d H:i:s") : null;
-        $registrationFee = $values['registrationFeePaid'] ? 1000 : null;
+        $appointment = self::findById($values['id']);
 
-        $stmt = $db->connection->prepare("UPDATE appointments SET paidAt = ?, date=?, registrationFee=?");
-        $stmt->execute([$paidAt, $values['date'], $registrationFee]);
+        $registrationFee = isset($values['registrationFeePaid']) ? 1000 : $appointment->registrationFee;
+
+        $stmt = $db->connection->prepare("UPDATE appointments SET date=?, registrationFee=? WHERE id=$appointment->id");
+        $stmt->execute([$values['date'], $registrationFee]);
+        return true;
+    }
+
+    public static function markAsPaid($id)
+    {
+        $db = self::getConnection();
+
+        $stmt = $db->connection->prepare("UPDATE appointments SET paidAt=? WHERE id=$id");
+        $stmt->execute([date("Y-m-d H:i:s")]);
         return true;
     }
 

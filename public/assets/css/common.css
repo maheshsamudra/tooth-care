@@ -4,8 +4,16 @@ input[readonly] {
 
 @media print {
   .hide-on-print,
+  .uk-alert,
   button,
   .uk-button {
     display: none;
+  }
+}
+
+.only-print {
+  display: none;
+  @media print {
+    display: block;
   }
 }
