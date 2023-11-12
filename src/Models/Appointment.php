@@ -36,8 +36,15 @@ class Appointment extends Database
 
         $registrationFee = isset($values['registrationFeePaid']) ? 1000 : $appointment->registrationFee;
 
-        $stmt = $db->connection->prepare("UPDATE appointments SET date=?, registrationFee=? WHERE id=$appointment->id");
-        $stmt->execute([$values['date'], $registrationFee]);
+        $appointmentNumber = $appointment->appointmentNumber;
+
+        if ($values['date'] != $appointment->date) {
+            $newAppointments = self::getAppointmentsForDate($values['date']);
+            $appointmentNumber = count($newAppointments) + 1;
+        }
+
+        $stmt = $db->connection->prepare("UPDATE appointments SET date=?, registrationFee=?, appointmentNumber=? WHERE id=$appointment->id");
+        $stmt->execute([$values['date'], $registrationFee, $appointmentNumber]);
         return true;
     }
 

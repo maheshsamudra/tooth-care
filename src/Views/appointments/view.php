@@ -38,7 +38,7 @@
                                 </span>
                             <?php endforeach; ?>
                         <?php else : ?>
-                            No services
+                            No services selected
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -64,9 +64,9 @@
 
             <?php if (!$appointment->registrationFee) : ?>
                 <a href="/appointments/edit?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary">Update</a>
-            <?php elseif (!$appointment->paidAt && count($obtainedServices) > 0) : ?>
-                <a href="/appointments/mark-as-paid?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary">Mark as paid</a>
-            <?php elseif (count($obtainedServices) > 0) : ?>
+            <?php elseif (!$appointment->paidAt && count($obtainedServices) > 0 && date("Y-m-d") == $appointment->date) : ?>
+                <a href="/appointments/mark-as-paid?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary" <?php if (date("Y-m-d") != $appointment->date) : ?>disabled<?php endif; ?>>Mark as paid</a>
+            <?php elseif (!!$appointment->paidAt) : ?>
                 <button onclick="window.print();" class="uk-button uk-button-secondary">Print Invoice</button>
             <?php else : ?>
                 <a href="/appointments/edit?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary">Update</a>
