@@ -5,7 +5,7 @@
                 <div class="uk-card uk-card-default uk-card-body  uk-margin-bottom">
                     <h4>Add Appointment</h4>
                     <form method="get" action="/appointments/add">
-                        <input class="uk-input" type="number" name="phoneNumber" aria-label="phoneNumber" placeholder="Phone Number" required value="0712345678">
+                        <input class="uk-input" type="number" name="phoneNumber" aria-label="phoneNumber" placeholder="Phone Number" required value="">
                         <div class="uk-margin-small">
                             <select name="date" id="date" class="uk-select">
                                 <?php foreach ($availableDates as $key => $slot) : ?>

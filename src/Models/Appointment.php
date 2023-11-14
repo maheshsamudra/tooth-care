@@ -18,13 +18,13 @@ class Appointment extends Database
         return $stmt->fetchObject();
     }
 
-    public static function create($values)
+    public static function create($values, $patient)
     {
         $registrationFee = $values["registrationFeePaid"] ? REGISTRATION_FEE : 0;
 
         $db = self::getConnection();
         $stmt = $db->connection->prepare("INSERT INTO appointments (date, registrationFee, patientId, appointmentNumber) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$values['date'], $registrationFee, $values["patientId"], $values['appointmentNumber']]);
+        $stmt->execute([$values['date'], $registrationFee, $patient->id, $values['appointmentNumber']]);
         return self::findById($db->connection->lastInsertId());
     }
 

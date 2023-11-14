@@ -19,7 +19,7 @@ class AppointmentController extends Controller
             $patient = Patient::createOrUpdate($this->postValues);
 
             // save the appointment
-            $appointment = Appointment::create($this->postValues);
+            $appointment = Appointment::create($this->postValues, $patient);
 
             // redirect to view the created appointment
             $this->redirect("/appointments/view?created=true&id=$appointment->id");
