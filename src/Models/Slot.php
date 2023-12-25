@@ -7,6 +7,14 @@ use DateTime;
 
 class Slot extends Database
 {
+
+    public $id;
+    public $day;
+    public $from;
+    public $enabled;
+    public $to;
+    public $maxNumberOfAppointments;
+
     public function __construct()
     {
     }
