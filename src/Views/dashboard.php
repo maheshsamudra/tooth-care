@@ -72,7 +72,11 @@
                 </tbody>
             </table>
         <?php else : ?>
-            <p class="uk-text-center">No Appointments for <?php echo $pickedDate; ?>!</p>
+            <div class="uk-margin-medium-top">
+                <div class="uk-alert uk-alert-warning uk-text-center">
+                    <span>No Appointments for <?php echo $pickedDate; ?>!</span>
+                </div>
+            </div>
         <?php endif; ?>
 
     </div>

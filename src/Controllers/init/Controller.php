@@ -42,6 +42,8 @@ class Controller
 
         extract(["user" => $this->user, "services" => $this->services, "slots" => $this->slots]);
 
+        extract(['post' => $this->postValues]);
+
 
         extract(['errorMessages' => $this->errorMessages, 'successMessages' => $this->successMessages, 'warningMessages' => $this->warningMessages]);
 

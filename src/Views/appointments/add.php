@@ -45,7 +45,7 @@
                 <div class="uk-margin">
                     <label for="phoneNumber" class="uk-form-label">Phone Number</label>
                     <div class="uk-form-controls">
-                        <input type="number" name="patientPhoneNumber" class="uk-input" placeholder="" required value="<?php echo $patient->phoneNumber ?? $_GET['phoneNumber'] ?? ""; ?>" <?php echo !!$patient ? " readonly" : ""; ?>>
+                        <input type="number" name="patientPhoneNumber" class="uk-input" placeholder="" required value="<?php echo $patient->phoneNumber ?? $_GET['phoneNumber'] ?? ""; ?>" readonly>
                     </div>
                 </div>
 
