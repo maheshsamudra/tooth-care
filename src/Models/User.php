@@ -33,11 +33,17 @@ class User extends Database
         return self::$instance;
     }
 
+    /**
+     * Validated the username and password
+     * @param string $username
+     * @param string $password
+     * @return int $userId
+     */
     public static function validateLogin($username, $password)
     {
         $user = self::getUserByUsername($username);
 
-        return $user && password_verify($password, $user->password) ? $user->id : null;
+        return $user && password_verify($password, $user->password) ? $user->id : 0;
     }
 
     public static function getLoggedInUser()

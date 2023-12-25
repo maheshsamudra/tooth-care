@@ -9,11 +9,13 @@ class Router
 {
     protected $routes = [];
 
+    // Adding the routes
     public function addRoute($route, $controller, $action)
     {
         $this->routes[$route] = ['controller' => $controller, 'action' => $action];
     }
 
+    // serving the selected method from the controller
     public function dispatch($uri)
     {
         if (array_key_exists($uri, $this->routes)) {

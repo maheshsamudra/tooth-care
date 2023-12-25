@@ -21,7 +21,7 @@ class Appointment extends Database
     public static function getAppointment($id)
     {
         $db = self::getConnection();
-        $stmt = $db->connection->prepare("SELECT * FROM appointments WHERE id=? join");
+        $stmt = $db->connection->prepare("SELECT * FROM appointments WHERE id=?");
         $stmt->execute([$id]);
         return $stmt->fetchObject();
     }

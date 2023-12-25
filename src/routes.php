@@ -23,4 +23,5 @@ $router->addRoute('/appointments/mark-as-paid', AppointmentController::class, 'm
 
 $uri =  $_SERVER['REQUEST_URI'];
 
+// handle the request by excluding the GET parameters from the URL
 $router->dispatch(strtok($uri, '?'));

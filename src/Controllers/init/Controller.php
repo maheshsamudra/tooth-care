@@ -58,6 +58,8 @@ class Controller
         header("Location: $location");
         die;
     }
+
+    // Making the GET variables available without checking for existence
     public function get($variable)
     {
         if (isset($this->getValues[$variable])) {
@@ -65,6 +67,8 @@ class Controller
         }
         return null;
     }
+
+    // Making the POST variables available without checking for existence
     public function post($variable)
     {
         if (isset($this->postValues[$variable])) {
@@ -72,6 +76,7 @@ class Controller
         }
         return null;
     }
+
     public function isPostRequest()
     {
         return $_SERVER["REQUEST_METHOD"] == "POST";
@@ -80,6 +85,7 @@ class Controller
     {
         return $_SERVER["REQUEST_METHOD"] == "GET";
     }
+
     public function addErrorMessage($message)
     {
         if (!$message) {
@@ -87,6 +93,7 @@ class Controller
         }
         array_push($this->errorMessages, $message);
     }
+
     public function addSuccessMessage($message)
     {
         if (!$message) {
@@ -94,6 +101,7 @@ class Controller
         }
         array_push($this->successMessages, $message);
     }
+
     public function addWarningMessage($message)
     {
         if (!$message) {
