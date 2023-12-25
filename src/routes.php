@@ -4,7 +4,6 @@ use APP\Controllers\AppointmentController;
 use APP\Controllers\AuthController;
 use APP\Controllers\DashboardController;
 use APP\Router;
-use APP\Controllers\UserController;
 
 
 $router = new Router();
@@ -15,7 +14,6 @@ $router->addRoute('/register', AuthController::class, 'register');
 $router->addRoute('/logout', DashboardController::class, 'logout');
 
 $router->addRoute('/', DashboardController::class, 'index');
-$router->addRoute('/user', UserController::class, 'index');
 
 $router->addRoute('/appointments/add', AppointmentController::class, 'add');
 $router->addRoute('/appointments/search', AppointmentController::class, 'search');
