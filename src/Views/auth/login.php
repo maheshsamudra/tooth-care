@@ -4,7 +4,7 @@
         <form action="/login" method='post' class="uk-form-stacked">
             <div class="uk-margin">
                 <label for="username" class="uk-form-label">Username</label>
-                <input type="text" name="username" class="uk-input" placeholder="" required value="<?php echo $post['username'] ?? ''; ?>">
+                <input type="text" name="username" autofocus class="uk-input" placeholder="" required value="<?php echo $post['username'] ?? ''; ?>">
             </div>
             <div class="uk-margin">
                 <label for="password" class="uk-form-label">Password</label>
