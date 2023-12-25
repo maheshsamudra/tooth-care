@@ -5,9 +5,6 @@ namespace APP\Controllers;
 use APP\Controller;
 use APP\Models\Appointment;
 use APP\Models\Slot;
-use APP\Models\Patient;
-use APP\Models\Service;
-use Database;
 
 class DashboardController extends Controller
 {

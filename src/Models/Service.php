@@ -7,10 +7,7 @@ use Database;
 class Service extends Database
 {
 
-    protected $table = "services";
-
-    public function __construct()
-    {
-        self::$table = "services";
-    }
+    public $id;
+    public $name;
+    public $price;
 }

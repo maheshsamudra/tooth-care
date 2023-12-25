@@ -14,11 +14,10 @@ class AuthController extends PublicController
     {
 
         if ($this->isPostRequest()) {
-            $user = User::getUserByUsername($this->post('username'));
+            $userId = User::validateLogin($this->post('username'), $this->post('password'));
 
-
-            if ($user && !password_verify($this->post('password'), $user->password)) {
-                $_SESSION["loggedInUserId"] = $user->id;
+            if ($userId) {
+                $_SESSION["loggedInUserId"] = $userId;
             } else {
                 $this->addErrorMessage("The credentials are incorrect. Please retry.");
             }

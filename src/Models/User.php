@@ -3,7 +3,6 @@
 namespace APP\Models;
 
 use Database;
-use Error;
 
 class User extends Database
 {
@@ -34,6 +33,13 @@ class User extends Database
         return self::$instance;
     }
 
+    public static function validateLogin($username, $password)
+    {
+        $user = self::getUserByUsername($username);
+
+        return $user && password_verify($password, $user->password) ? $user->id : null;
+    }
+
     public static function getLoggedInUser()
     {
         if (isset($_SESSION["loggedInUserId"])) {
@@ -50,7 +56,7 @@ class User extends Database
     public static function getUserByUsername($username)
     {
         $db = self::getConnection();
-        $stmt = $db->connection->prepare("SELECT id, username, firstName, lastName FROM users WHERE username=?");
+        $stmt = $db->connection->prepare("SELECT id, username, firstName, lastName, password FROM users WHERE username=?");
         $stmt->execute([$username]);
         return $stmt->fetchObject();
     }
