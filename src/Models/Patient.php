@@ -6,6 +6,7 @@ use Database;
 
 class Patient extends Database
 {
+    public $id;
     public $name;
     public $address;
     public $emailAddress;

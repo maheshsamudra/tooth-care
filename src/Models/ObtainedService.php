@@ -6,6 +6,13 @@ use Database;
 
 class ObtainedService extends Database
 {
+
+    public $id;
+    public $appointmentId;
+    public $service;
+    public $price;
+    public $serviceId;
+
     public function __construct()
     {
     }

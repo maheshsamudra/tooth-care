@@ -6,6 +6,14 @@ use Database;
 
 class Appointment extends Database
 {
+
+    public $id;
+    public $date;
+    public $registrationFee;
+    public $patientId;
+    public $appointmentNumber;
+    public $paidAt;
+
     public function __construct()
     {
     }

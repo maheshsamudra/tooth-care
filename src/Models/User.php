@@ -10,9 +10,11 @@ class User extends Database
 
     private static $instance = null;
 
+    public $id;
     public $firstName;
     public $lastName;
     public $username;
+    private $password;
 
     private function __construct($user)
     {
