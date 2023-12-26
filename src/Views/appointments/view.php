@@ -64,7 +64,21 @@
 
             <?php if (!$appointment->registrationFee) : ?>
                 <a href="/appointments/edit?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary">Update</a>
-            <?php elseif (!$appointment->paidAt && count($obtainedServices) > 0 && date("Y-m-d") == $appointment->date) : ?>
+
+                <?php
+
+                /**
+                 * 
+                 * The Original code that compare the appointment date and the current date to enable the "Mark as Paid" button.
+                 * This is commented out to make the testing easier.
+                 * 
+                 * <?php elseif (!$appointment->paidAt && count($obtainedServices) > 0 && date("Y-m-d") == $appointment->date) : ?>
+                 *        <a href="/appointments/mark-as-paid?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary" <?php if (date("Y-m-d") != $appointment->date) : ?>disabled<?php endif; ?>>Mark as paid</a>
+                 */
+                ?>
+
+
+            <?php elseif (!$appointment->paidAt && count($obtainedServices) > 0) : ?>
                 <a href="/appointments/mark-as-paid?id=<?php echo $appointment->id; ?>" class="uk-button uk-button-secondary" <?php if (date("Y-m-d") != $appointment->date) : ?>disabled<?php endif; ?>>Mark as paid</a>
             <?php elseif (!!$appointment->paidAt) : ?>
                 <button onclick="window.print();" class="uk-button uk-button-secondary">Print Invoice</button>
